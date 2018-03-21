@@ -1,0 +1,24 @@
+@font-face{
+  font-family: PingFang-SC-Medium;
+  src:url(../font/PingFang-Medium.ttf);
+  font-weight: normal;
+  font-stretch: normal;
+}
+@font-face{
+  font-family: PingFang-SCBold;
+  src:url(../font/PingFang-SCBold.ttf);
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  font-family: PingFang-SC-Medium;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  text-decoration: none;
+}
+ul li{
+  list-style: none;
+}
