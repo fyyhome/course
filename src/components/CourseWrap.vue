@@ -95,7 +95,6 @@
         for(let item in this.courseData){
           if(item === this.courseType){
             this.nowTypeCourse = this.courseData[item]
-            console.log(this.nowTypeCourse)
           }
         }
         if(this.nowTypeCourse.length === 0){

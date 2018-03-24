@@ -1,12 +1,12 @@
 <template>
-  <div v-if="course">
+  <div v-if="CourseType&&course">
     <course-head></course-head>
-    <course-wrap :course-type="CourseType[0]" :course-data="course" class="courseTypeT"></course-wrap>
-    <course-wrap :course-type="CourseType[1]" :course-data="course" class="courseTypeH"></course-wrap>
-    <course-wrap :course-type="CourseType[2]" :course-data="course" class="courseTypeS"></course-wrap>
-    <course-wrap :course-type="CourseType[3]" :course-data="course" class="courseTypeZ"></course-wrap>
-    <course-wrap :course-type="CourseType[4]" :course-data="course" class="courseTypeM"></course-wrap>
-    <course-wrap :course-type="CourseType[5]" :course-data="course" class="courseTypeKU"></course-wrap>
+    <course-wrap :course-type="CourseType[0]" :course-data="course" :class="ClassType[0]"></course-wrap>
+    <course-wrap :course-type="CourseType[1]" :course-data="course" :class="ClassType[1]"></course-wrap>
+    <course-wrap :course-type="CourseType[2]" :course-data="course" :class="ClassType[2]"></course-wrap>
+    <course-wrap :course-type="CourseType[3]" :course-data="course" :class="ClassType[3]"></course-wrap>
+    <course-wrap :course-type="CourseType[4]" :course-data="course" :class="ClassType[4]"></course-wrap>
+    <course-wrap :course-type="CourseType[5]" :course-data="course" :class="ClassType[5]"></course-wrap>
   </div>
   
 </template>
@@ -48,17 +48,29 @@
     },
     data(){
       return {
-        CourseType:[
-          '传统文化与世界文明 T',
-          '人文学科与艺术审美 H',
-          '社会科学与人类发展 S',
-          '自然科学与现代技术 Z',
-          '医学与生命科学 M',
-          '创新创业类 KU'
-        ],
+        CourseType:[],
+        ClassType:[],
         token:null,
         course:null,
         user:null
+      }
+    },
+    methods:{
+      selectCourseType(msg){
+        for(let item in msg){
+          if(msg[item].length != 0){
+            this.CourseType.push(item)
+          }
+        }
+        for(let item in msg){
+          if(msg[item].length === 0){
+            this.CourseType.push(item)
+          }
+        }
+        for(let todo of this.CourseType){
+          let className = todo.split(" ")
+          this.ClassType.push('courseType' + className[1])
+        }
       }
     },
     created:function(){//app端代码
@@ -71,16 +83,18 @@
           api.getCourse(this.user).then((res) => {
             this.course = res.data.message
             console.log(this.course)
+            this.selectCourseType(this.course)
           })
         })
       }
       //Chrome环境api测试代码
-      api.getUser('eyJhbGciOiJIUzI1NiIsImlhdCI6MTUyMTg3OTAwOCwiZXhwIjoxNTIxODgyMDA4fQ.eyJpZCI6IjYxNjA0ODA1MTIiLCJ4aCI6IjgwMDAxMTYwOTMiLCJleHAiOjE1MjE4ODIwMDh9.7fwTU6Hl8Oe54cQIKulpEkz7qY_orPhkoWphEmk3W-8').then((res) => {
+      api.getUser('eyJleHAiOjE1MjE4ODUzMTUsImlhdCI6MTUyMTg4MjMxNSwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE1MjE4ODUzMTUsImlkIjoiNjE2MDQ4MDUxMiIsInhoIjoiODAwMDExNjA5MyJ9.ymtRZgdOMbnkrhhWssbY3mAeP9nsU7RO2F7KQmlY4RE').then((res) => {
         this.user = res.data.base_info.xh
         console.log(this.user)
         api.getCourse(this.user).then((res) => {
           this.course = res.data.message
           console.log(this.course)
+          this.selectCourseType(this.course)
         })
       })
     }
