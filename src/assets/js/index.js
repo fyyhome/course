@@ -10,7 +10,7 @@ const instance = axios.create({
 const getUser = (token) => {
   return instance.get('/user/profile/basic',{
     headers:{
-      'Authorization':token
+      'Authorization':'passport ' + token
     }
   }).then((res) => {
     return res

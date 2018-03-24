@@ -1,13 +1,13 @@
 <template>
   <div class="course-wrap">
     <span>{{courseType}}</span>
-    <div v-if="courseData">
-      <div>
-        <p class="course">666666666666</p>
-        <p class="teacher">lll</p>
+    <div v-if="computeData">
+      <div v-for="todo in nowTypeCourse">
+        <p class="course">{{todo.kcmc}}</p>
+        <p class="teacher">{{todo.teacher}}</p>
       </div>
     </div>
-    <div v-if="!courseData" class="tip-wrap">
+    <div v-if="!computeData" class="tip-wrap">
       <p>暂无选课</p>
     </div>
   </div>
@@ -20,9 +20,8 @@
     min-height: 150 / @fs;
     border-radius: 20 / @fs;
     background-color: #ffffff;
-    box-shadow: 0 3/@fs 0 10/@fs rgba(4,0,0,0.08);
+    box-shadow: 0 3/@fs 0 10/@fs rgba(4,0,0,0.01);
     margin: 40/@fs auto;
-    border-left: 10/@fs solid rgb(235,172,220);
     span{
       display: inline-block;
       height: 30/@fs;
@@ -30,7 +29,7 @@
       margin-left: 32/@fs;
       margin-top: 28/@fs;
       color: #50b2ff;
-      font-size: 30/@fs;
+      font-size: 29/@fs;
       line-height: 1;
     }
   }
@@ -48,8 +47,8 @@
     p{
       height: auto;
       line-height: 33/@fs;
-      font-size: 30/@fs;
-      color: rgba(0,0,0,0.7);
+      font-size: 28/@fs;
+      color: rgba(0,0,0,0.45);
     }
   }
   .course-wrap > div{
@@ -57,15 +56,15 @@
       .base-wrap;
       justify-content: space-between;
       p{
-        font-size: 30/@fs;
+        font-size: 28/@fs;
         display: flex;
         height: auto;
         line-height: 33/@fs;
       }
     }
-    div:nth-child(2) ~ div{
-      border-top: 1px solid #eff1f4;
-    }
+  }
+  .course-wrap > div > div:nth-child(1) ~ div{
+    border-top: 1px solid #eff1f4;
   }
   .course{
     max-width: 280/@fs;
@@ -87,7 +86,22 @@
     props:['courseType','courseData'],
     data(){
       return {
-        colorType:''
+        colorType:'',
+        nowTypeCourse:null
+      }
+    },
+    computed:{
+      computeData:function(){
+        for(let item in this.courseData){
+          if(item === this.courseType){
+            this.nowTypeCourse = this.courseData[item]
+            console.log(this.nowTypeCourse)
+          }
+        }
+        if(this.nowTypeCourse.length === 0){
+          this.nowTypeCourse = false
+        }
+        return this.nowTypeCourse
       }
     }
   }
