@@ -26,6 +26,7 @@
     line-height: 1;
     font-family: PingFang-SCBold !important;
     font-size: 4.5vw;
+    font-weight: bold;
     color: #333333;
   }
 </style>

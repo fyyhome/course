@@ -20,7 +20,7 @@
     min-height: 150 / @fs;
     border-radius: 20 / @fs;
     background-color: #ffffff;
-    box-shadow: 0 3/@fs 0 10/@fs rgba(4,0,0,0.01);
+    box-shadow: 0 3/@fs 2px 10/@fs rgba(4,0,0,0.02);
     margin: 40/@fs auto;
     span{
       display: inline-block;
