@@ -19,14 +19,15 @@ const getUser = (token) => {
 
 //获取app端的数据，从里面拿token
 function getAppData(){
-  let data = ''
+  // let data = ''
   if(Miracle.isApp()){
     Miracle.onAppReady(() => {
-      data = Miracle.getData()
+      let data = Miracle.getData()
       console.log(data)
+      return data
     })
   }
-  return data
+  return false
 }
 
 //根据学号获取选课数据
