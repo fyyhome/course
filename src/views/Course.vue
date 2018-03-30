@@ -74,7 +74,7 @@
       }
     },
     created:function(){//app端代码
-      const data = api.getAppData()
+      let data = api.getData.getAppData()
       console.log(data)
       if(data){
         this.token = data.user.token
