@@ -18,14 +18,16 @@ const getUser = (token) => {
 }
 
 //获取app端的数据，从里面拿token
+// const data 
 function getAppData(){
-  // let data = ''
   if(Miracle.isApp()){
-    return Miracle.onAppReady(() => {
-      let data = Miracle.getData()
+    let data
+    Miracle.onAppReady(() => {
+      data = Miracle.getData()
       console.log(data)
-      return data
     })
+    console.log(data)
+    return data
   }
   else
     return false
