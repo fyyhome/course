@@ -44,7 +44,6 @@ const getCourse = (username) => {
 }
 
 export default {
-  getAppData,
   getUser,
   getCourse,
   getData
