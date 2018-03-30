@@ -21,13 +21,14 @@ const getUser = (token) => {
 function getAppData(){
   // let data = ''
   if(Miracle.isApp()){
-    Miracle.onAppReady(() => {
+    return Miracle.onAppReady(() => {
       let data = Miracle.getData()
       console.log(data)
       return data
     })
   }
-  return false
+  else
+    return false
 }
 
 //根据学号获取选课数据
