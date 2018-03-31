@@ -18,16 +18,13 @@ const getUser = (token) => {
 }
 
 //获取app端的数据，从里面拿token
-const getData = {
-  data:false,
-  getAppData:function(){
-    if(Miracle.isApp()){
-      Miracle.onAppReady(() => {
-        this.data = Miracle.getData()
-        console.log(this.data)
-      })
-      return this.data
-    }
+function getAppData(data){
+  if(Miracle.isApp()){
+    Miracle.onAppReady((data) => {
+      data = Miracle.getData()
+      console.log(data)
+    })
+    console.log(data)
   }
 }
 
@@ -46,5 +43,5 @@ const getCourse = (username) => {
 export default {
   getUser,
   getCourse,
-  getData
+  getAppData
 }
