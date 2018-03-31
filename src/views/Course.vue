@@ -72,17 +72,13 @@
           let className = todo.split(" ")
           this.ClassType.push('courseType' + className[1])
         }
+      },
+      getUserData(data){
+        this.userData = data
       }
     },
     created:function(){//app端代码
-      if(api.Miracle.isApp()){
-        let that = this
-        api.Miracle.onAppReady(() => {
-          that.userData = api.Miracle.getData()
-          console.log(that.userData)
-        })
-        console.log(that.userData)
-      }
+      api.getAppData(this.getUserData)
       console.log(this.userData)
       if(this.userData){
         this.token = this.userData.user.token
