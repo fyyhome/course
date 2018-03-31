@@ -21,9 +21,7 @@ const getUser = (token) => {
 function getAppData(cb){
   if(Miracle.isApp()){
     Miracle.onAppReady(() => {
-      let data = Miracle.getData()
-      console.log(data)
-      cb(data)
+      cb(Miracle.getData())
     })
   }
 }
