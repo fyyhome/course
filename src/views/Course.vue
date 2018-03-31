@@ -1,5 +1,5 @@
 <template>
-  <div v-if="CourseType&&course" :class="[CourseType&&course? 'op1' : 'op0', 'op']">
+  <div :class="[CourseType&&course? 'op1' : 'op0', 'op']">
   <!--   <course-head></course-head> -->
     <course-wrap :course-type="CourseType[0]" :course-data="course" :class="ClassType[0]"></course-wrap>
     <course-wrap :course-type="CourseType[1]" :course-data="course" :class="ClassType[1]"></course-wrap>
