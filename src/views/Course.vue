@@ -52,7 +52,8 @@
         ClassType:[],
         token:null,
         course:null,
-        user:null
+        user:null,
+        userData:null
       }
     },
     methods:{
@@ -74,11 +75,17 @@
       }
     },
     created:function(){//app端代码
-      let data
-      api.getAppData(data)
-      console.log(data)
-      if(data){
-        this.token = data.user.token
+      if(api.Miracle.isApp()){
+        let that = this
+        api.Miracle.onAppReady(() => {
+          that.userData = api.Miracle.getData()
+          console.log(that.userData)
+        })
+        console.log(that.userData)
+      }
+      console.log(this.userData)
+      if(this.userData){
+        this.token = this.userData.user.token
         api.getUser(this.token).then((res) => {
           this.user = res.data.base_info.xh
           console.log(this.user)
