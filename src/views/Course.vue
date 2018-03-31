@@ -1,6 +1,6 @@
 <template>
-  <div v-if="CourseType&&course">
-    <course-head></course-head>
+  <div v-if="CourseType&&course" :class="[CourseType&&course? 'op1' : 'op0', 'op']">
+  <!--   <course-head></course-head> -->
     <course-wrap :course-type="CourseType[0]" :course-data="course" :class="ClassType[0]"></course-wrap>
     <course-wrap :course-type="CourseType[1]" :course-data="course" :class="ClassType[1]"></course-wrap>
     <course-wrap :course-type="CourseType[2]" :course-data="course" :class="ClassType[2]"></course-wrap>
@@ -33,6 +33,15 @@
   }
   .courseTypeM{
     .border-left-color(rgb(148,210,185));
+  }
+  .op0{
+    opacity: 0;
+  }
+  .op1{
+    opacity: 1;
+  }
+  .op{
+    transition: opacity 1s;
   }
 </style>
 
@@ -92,17 +101,6 @@
     },
     created:function(){//app端代码
       api.getAppData(this.getUserData)
-      console.log(this.userData)
-      //Chrome环境api测试代码
-      // api.getUser('eyJleHAiOjE1MjE4ODUzMTUsImlhdCI6MTUyMTg4MjMxNSwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE1MjE4ODUzMTUsImlkIjoiNjE2MDQ4MDUxMiIsInhoIjoiODAwMDExNjA5MyJ9.ymtRZgdOMbnkrhhWssbY3mAeP9nsU7RO2F7KQmlY4RE').then((res) => {
-      //   this.user = res.data.base_info.xh
-      //   console.log(this.user)
-      //   api.getCourse(this.user).then((res) => {
-      //     this.course = res.data.message
-      //     console.log(this.course)
-      //     this.selectCourseType(this.course)
-      //   })
-      // })
     }
   }
 </script>
