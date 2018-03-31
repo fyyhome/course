@@ -77,6 +77,7 @@
         this.userData = data
         if(this.userData){
           this.token = this.userData.user.token
+          console.log(this.token)
           api.getUser(this.token).then((res) => {
             this.user = res.data.base_info.xh
             console.log(this.user)
