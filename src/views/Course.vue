@@ -76,20 +76,17 @@
         this.userData = data
         if(this.userData){
           this.token = this.userData.user.token
-          console.log(this.token)
           api.getUser(this.token).then((res) => {
             this.user = res.data.base_info.xh
-            console.log(this.user)
             api.getCourse(this.user).then((res) => {
               this.course = res.data.message
-              console.log(this.course)
               this.selectCourseType(this.course)
             })
           })
         }
       }
     },
-    created:function(){//app端代码
+    created:function(){
       api.getAppData(this.getUserData)
     }
   }
