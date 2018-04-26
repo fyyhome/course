@@ -29,7 +29,7 @@ function getAppData(cb){
 
 //根据学号获取选课数据
 const getCourse = (username) => {
-  return instance.post('http://101.37.24.80:8949/erlei',{
+  return instance.post('https://erlei.ncuos.com/erlei',{
     xh:username
   }).then((res) => {
     return res
